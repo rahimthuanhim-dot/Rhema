@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root{
+  --forest-950:#152a1c;
+  --forest-800:#1f4028;
+  --ridge-600:#3f6b4a;
+  --ridge-400:#6d9b78;
+  --ochre-500:#c98a2c;
+  --ochre-300:#e3b15c;
+  --paper-50:#fbf8f0;
+  --paper-100:#f4eddc;
+  --ink-900:#241f18;
+}
+
+*{box-sizing:border-box}
+body{
+  font-family:'Source Sans 3',sans-serif;
+  background:var(--paper-50);
+  color:var(--ink-900);
+}
+h1,h2,h3,.font-display{font-family:'Fraunces',serif;}
+.font-mono{font-family:'IBM Plex Mono',monospace;}
+
+/* Ridge-line divider: silhouette of the Noney hills, repeated as a section seam */
+.ridge{
+  display:block;
+  width:100%;
+  height:46px;
+  line-height:0;
+}
+.ridge svg{width:100%;height:100%;display:block}
+
+/* Ledger-style record card for UDISE / infrastructure data */
+.ledger-card{
+  background:var(--paper-100);
+  border:1px solid rgba(36,31,24,0.14);
+  position:relative;
+}
+.ledger-card::before{
+  content:"";
+  position:absolute;
+  inset:6px;
+  border:1px solid rgba(36,31,24,0.1);
+  pointer-events:none;
+}
+.ledger-row{
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  padding:0.55rem 0;
+  border-bottom:1px dashed rgba(36,31,24,0.18);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.85rem;
+}
+.ledger-row:last-child{border-bottom:none}
+.ledger-label{color:rgba(36,31,24,0.6)}
+.ledger-value{font-weight:500}
+
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  font-size:0.72rem;
+}
+
+.stamp{
+  border:1.5px solid var(--ochre-500);
+  color:var(--ochre-500);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.7rem;
+  letter-spacing:0.08em;
+  transform:rotate(-3deg);
+  display:inline-block;
+}
+
+nav a.active{color:var(--ochre-300);border-bottom-color:var(--ochre-300);}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important;}
+}

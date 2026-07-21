@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Rhema Public School</title>
+<link rel="icon" href="assests/Rhema Logo.jpeg" type="image/x-icon">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          forest: { 950:'#152a1c', 800:'#1f4028' },
+          ridge: { 600:'#3f6b4a', 400:'#6d9b78' },
+          ochre: { 500:'#c98a2c', 300:'#e3b15c' },
+          paper: { 50:'#fbf8f0', 100:'#f4eddc' },
+          ink: { 900:'#241f18' }
+        },
+        fontFamily: {
+          display: ['Fraunces','serif'],
+          body: ['Source Sans 3','sans-serif'],
+          mono: ['IBM Plex Mono','monospace']
+        }
+      }
+    }
+  }
+</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="font-body bg-paper-50 text-ink-900">
+
+<header class="bg-forest-950 text-paper-50">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="assests/Rhema Logo.jpeg" width="36" height="36" alt="Rhema Public School logo">
+      <span class="font-display text-4xl tracking-wide">RHEMA PUBLIC SCHOOL</span>
+    </a>
+    <nav class="hidden md:flex gap-8 eyebrow">
+      <a href="index.html" class="hover:text-ochre-300 border-b pb-1 border-transparent">Home</a>
+      <a href="about.html" class="active border-b pb-1 border-transparent">About</a>
+      <a href="facilities.html" class="hover:text-ochre-300 border-b pb-1 border-transparent">Facilities</a>
+      <a href="Notice.html" class="hover:text-ochre-300 border-b pb-1 border-transparent">Notice</a>
+      <a href="gallery.html" class="hover:text-ochre-300 border-b pb-1 border-transparent">Gallery</a>
+      <a href="contact.html" class="hover:text-ochre-300 border-b pb-1 border-transparent">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="bg-forest-950 text-paper-50 py-16">
+  <div class="max-w-4xl mx-auto px-6">
+    <p class="eyebrow text-ochre-300 mb-3">About</p>
+    <h1 class="font-display text-4xl md:text-5xl">Built private, run for the public.</h1>
+  </div>
+</section>
+
+<div class="ridge bg-paper-50">
+  <svg viewBox="0 0 1200 46" preserveAspectRatio="none"><path d="M0,0 L0,26 L100,6 L180,36 L260,12 L340,42 L420,16 L520,38 L600,8 L700,32 L800,14 L900,40 L980,18 L1080,44 L1200,22 L1200,0 Z" fill="#152a1c"/></svg>
+</div>
+
+<section class="py-16">
+  <div class="max-w-4xl mx-auto px-6 space-y-6 text-lg leading-relaxed">
+    <p>
+      Rhema Public School was established in 2010 in Khumji Bazaar, under
+      Noney district. It is a privately built, unaided institution — the
+      school owns its building, rather than sharing space or running a
+      shift system with another school.
+    </p>
+    <p>
+      The school is co-educational, admitting boys and girls from Class 1
+      through Class 10, with no attached pre-primary section. Instruction
+      is delivered outside the standard Manipuri/English single-medium
+      model, and the academic session follows the April-start calendar
+      common across Manipur's hill schools.
+    </p>
+    <p>
+      Rhema sits in a rural stretch of Noney district, reachable year-round
+      by an all-weather road — a detail that matters more in the hills
+      than it might read on a page, since seasonal roads are what
+      routinely cut off rural schools during the monsoon.
+    </p>
+  </div>
+</section>
+
+<section class="bg-paper-100 py-16">
+  <div class="max-w-4xl mx-auto px-6">
+    <p class="eyebrow text-ridge-600 mb-3">Leadership</p>
+    <h2 class="font-display text-3xl mb-8">Who runs the school</h2>
+    <div class="grid sm:grid-cols-2 gap-6">
+      <div class="ledger-card p-6">
+        <p class="font-display text-xl mb-1">Lily Phaomei</p>
+        <p class="eyebrow text-ridge-600">Principal &amp; Founder</p>
+      </div>
+      <div class="ledger-card p-6">
+        <p class="font-display text-xl mb-1">Laningam Phaomei</p>
+        <p class="eyebrow text-ridge-600">Administration &amp; Principal, public events</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-forest-950 text-paper-50/70 py-10">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between gap-6 text-sm">
+    <p>&copy; 2026 Rhema Public School, Khumji Bazaar, Manipur.</p>
+    <div class="flex gap-6 eyebrow">
+      <a href="index.html" class="hover:text-ochre-300">Home</a>
+      <a href="facilities.html" class="hover:text-ochre-300">Facilities</a>
+      <a href="contact.html" class="hover:text-ochre-300">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

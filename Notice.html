@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notices — Rhema Public Academy</title>
+<link rel="icon" href="assests/Rhema Logo.jpeg" type="image/x-icon">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          forest: { 950:'#152a1c', 800:'#1f4028' },
+          ridge: { 600:'#3f6b4a', 400:'#6d9b78' },
+          ochre: { 500:'#c98a2c', 300:'#e3b15c' },
+          paper: { 50:'#fbf8f0', 100:'#f4eddc' },
+          ink: { 900:'#241f18' }
+        },
+        fontFamily: {
+          display: ['Fraunces','serif'],
+          body: ['Source Sans 3','sans-serif'],
+          mono: ['IBM Plex Mono','monospace']
+        }
+      }
+    }
+  }
+</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="font-body bg-paper-50 text-ink-900">
+
+<header class="bg-forest-950 text-paper-50">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="assests/Rhema Logo.jpeg" width="36" height="36" alt="Rhema Public School logo">
+      <span class="font-display text-4xl tracking-wide">RHEMA PUBLIC ACADEMY</span>
+    </a>
+    <nav class="hidden md:flex gap-8 eyebrow">
+      <a href="index.html" class="hover:text-ochre-300 border-b pb-1 border-transparent">Home</a>
+      <a href="about.html" class="hover:text-ochre-300 border-b pb-1 border-transparent">About</a>
+      <a href="facilities.html" class="hover:text-ochre-300 border-b pb-1 border-transparent">Facilities</a>
+      <a href="Notice.html" class="active border-b pb-1 border-transparent">Notice</a>
+      <a href="gallery.html" class="hover:text-ochre-300 border-b pb-1 border-transparent">Gallery</a>
+      <a href="contact.html" class="hover:text-ochre-300 border-b pb-1 border-transparent">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="bg-forest-950 text-paper-50 py-16">
+  <div class="max-w-4xl mx-auto px-6">
+    <p class="eyebrow text-ochre-300 mb-3">Notice Board</p>
+    <h1 class="font-display text-4xl md:text-5xl">What's happening at RPA.</h1>
+    <p class="mt-4 text-ridge-400 max-w-xl">Circulars, exam dates, holidays, and announcements, posted as they come in.</p>
+  </div>
+</section>
+
+<div class="ridge bg-paper-50">
+  <svg viewBox="0 0 1200 46" preserveAspectRatio="none"><path d="M0,0 L0,26 L100,6 L180,36 L260,12 L340,42 L420,16 L520,38 L600,8 L700,32 L800,14 L900,40 L980,18 L1080,44 L1200,22 L1200,0 Z" fill="#152a1c"/></svg>
+</div>
+
+<section class="py-16">
+  <div class="max-w-4xl mx-auto px-6">
+
+    <div id="notice-status" class="eyebrow text-ink-900/50 mb-6">Loading notices…</div>
+    <div id="notice-list" class="space-y-4"></div>
+
+  </div>
+</section>
+
+<footer class="bg-forest-950 text-paper-50/70 py-10">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between gap-6 text-sm">
+    <p>&copy; 2026 Rhema Public Academy, Khumji Bazar, Manipur.</p>
+    <div class="flex gap-6 eyebrow">
+      <a href="index.html" class="hover:text-ochre-300">Home</a>
+      <a href="about.html" class="hover:text-ochre-300">About</a>
+      <a href="facilities.html" class="hover:text-ochre-300">Facilities</a>
+      <a href="gallery.html" class="hover:text-ochre-300">Gallery</a>
+      <a href="contact.html" class="hover:text-ochre-300">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/*
+  ── NOTICE BOARD INTEGRATION ──────────────────────────────────────────
+  Plug in your Google Apps Script Web App URL below. Expected pattern
+  (same as the Sharon English High School notice board):
+
+  1. Google Form collects notices (title, date, body) into a Sheet.
+  2. An Apps Script Web App (deployed with "Anyone" access) reads that
+     Sheet and returns JSON, e.g.:
+     [
+       { "title": "Term exam schedule", "date": "2026-08-01", "body": "..." },
+       ...
+     ]
+  3. This page fetches that URL and renders the list below.
+
+  Until you deploy the script, this falls back to the SAMPLE_NOTICES
+  array so the page never looks broken during setup.
+*/
+const NOTICE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzGI0CcScfGbMbJCycdUD8cNpheQbA3unHw05N4LMdlUWq0aQ4nFvLRwE4nnfLyTzBanA/exec"; // <-- paste your Apps Script Web App URL here
+
+const SAMPLE_NOTICES = [
+  { title: "Sample notice — replace with live data", date: "2026-07-19", body: "Once NOTICE_SCRIPT_URL is set, notices submitted through the Google Form will appear here automatically, newest first." }
+];
+
+// Your Apps Script returns { id, title, content, target_audience, created_at, expires_at }.
+// Normalize that into { title, date, body, audience, expiresAt } so the rest of this
+// file has one consistent shape to work with, regardless of which key names the
+// backend happens to use.
+function normalizeNotice(raw) {
+  return {
+    title: raw.title ?? "Untitled notice",
+    body: raw.content ?? raw.body ?? "",
+    date: raw.created_at ?? raw.date ?? "",
+    audience: raw.target_audience ?? "",
+    expiresAt: raw.expires_at ?? null
+  };
+}
+
+async function loadNotices() {
+  const statusEl = document.getElementById('notice-status');
+  const listEl = document.getElementById('notice-list');
+  let notices = SAMPLE_NOTICES;
+
+  if (NOTICE_SCRIPT_URL) {
+    try {
+      const res = await fetch(NOTICE_SCRIPT_URL);
+      if (!res.ok) throw new Error('Bad response');
+      const data = await res.json();
+      if (Array.isArray(data) && data.length) notices = data;
+      statusEl.remove();
+    } catch (err) {
+      statusEl.textContent = "Couldn't reach the notice feed — showing a placeholder.";
+    }
+  } else {
+    statusEl.textContent = "Notice feed not connected yet — showing a placeholder.";
+  }
+
+  const now = new Date();
+
+  notices
+    .map(normalizeNotice)
+    // drop notices that have expired, if an expiry was set
+    .filter(n => !n.expiresAt || new Date(n.expiresAt) > now)
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .forEach(n => {
+      const dateLabel = n.date ? new Date(n.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
+      const card = document.createElement('div');
+      card.className = 'ledger-card p-5';
+      card.innerHTML = `
+        <div class="flex justify-between items-baseline gap-4 mb-2">
+          <div class="flex items-center gap-3">
+            <p class="font-display text-lg">${n.title}</p>
+            ${n.audience ? `<span class="eyebrow text-ochre-500 text-[0.65rem]">${n.audience}</span>` : ''}
+          </div>
+          <p class="font-mono text-xs text-ink-900/50 whitespace-nowrap">${dateLabel}</p>
+        </div>
+        <p class="text-ink-900/80">${n.body}</p>
+      `;
+      listEl.appendChild(card);
+    });
+
+  if (!listEl.children.length) {
+    listEl.innerHTML = `<p class="text-ink-900/50">No current notices.</p>`;
+  }
+}
+loadNotices();
+</script>
+
+</body>
+</html>
