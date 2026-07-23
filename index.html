@@ -64,7 +64,7 @@
 </script>
 </head>
 <!-- NAV -->
-<header class="bg-forest-950 text-paper-50">
+<header class="bg-forest-950 text-paper-50 relative">
   <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
     <a href="index.html" class="flex items-center gap-3">
       <img src="assests/Rhema Logo.jpeg" width="36" height="36" alt="Rhema Public School logo" class="h-20 w-20 object-contain mb-6 drop-shadow-lg rounded-lg">
@@ -78,8 +78,36 @@
       <a href="gallery.html" class="hover:text-ochre-300 border-b pb-1 border-transparent">Gallery</a>
       <a href="contact.html" class="hover:text-ochre-300 border-b pb-1 border-transparent">Contact</a>
     </nav>
+    <button id="menu-toggle" class="md:hidden text-paper-50 p-1" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg id="icon-open" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg id="icon-close" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="hidden"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden flex-col eyebrow bg-forest-950 border-t border-paper-50/10 px-6">
+    <a href="index.html" class="block py-3 border-b border-paper-50/10">Home</a>
+    <a href="about.html" class="block py-3 border-b border-paper-50/10">About</a>
+    <a href="facilities.html" class="block py-3 border-b border-paper-50/10">Facilities</a>
+    <a href="Notice.html" class="block py-3 border-b border-paper-50/10">Notice</a>
+    <a href="gallery.html" class="block py-3 border-b border-paper-50/10">Gallery</a>
+    <a href="contact.html" class="block py-3 border-b border-paper-50/10">Contact</a>
   </div>
 </header>
+<script>
+  (function() {
+    const btn = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+    btn.addEventListener('click', function() {
+      const isOpen = menu.classList.contains('flex');
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+      iconOpen.classList.toggle('hidden');
+      iconClose.classList.toggle('hidden');
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  })();
+</script>
 
 <!-- HERO -->
 <section class="relative bg-forest-950 text-paper-50 overflow-hidden" style="background-image: linear-gradient(180deg, rgba(45, 57, 49, 0.78) 0%, rgba(32, 67, 42, 0.62) 45%, rgba(15, 63, 45, 0.85) 100%), url('assests/campus.jpeg'); background-size: cover; background-position: center;">
