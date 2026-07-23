@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 User-agent: *
 Allow: /
 
+=======
+User-agent: *
+Allow: /
+
+>>>>>>> 0a4056b2de197f568979bb3c00434ec761c5061a
 Sitemap: https://rhema-phi-rouge.vercel.app/sitemap.xml
